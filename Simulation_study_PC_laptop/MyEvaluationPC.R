@@ -6,8 +6,12 @@
 #if no, then the null hypothesis is incorrectly not rejected.
 
 MyEvaluationPC <- function(MyAnalysisResult){
-  res <- ifelse(MyAnalysisResult$p.value < 0.05, 1, 0)
-  # 1 means: the alternative hypothesis is correctly accepted
-  # 0 means: the null hypothesis is incorrectly not rejected
+  
+    if (MyAnalysisResult$p.value < 0.05 ){
+      res = 1
+    }
+    else{
+      res = 0
+    }
  return(res)
-  }
+}
