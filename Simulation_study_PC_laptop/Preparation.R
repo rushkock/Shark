@@ -1,6 +1,7 @@
 setwd("C:/Users/ruche/OneDrive/Documents/Shark/Simulation_study_PC_laptop")
 #Preparation of the analysis
 ### Initialize the factors of your design:
+# these sare the different sample sizes
 sampSmall1 = 10
 sampSmall2 = c(10, 8, 13, 5, 15, 3, 18)
 SampMed1 = 60
