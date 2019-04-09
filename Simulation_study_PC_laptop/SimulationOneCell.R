@@ -13,19 +13,20 @@ MySimulationCell<- function(Design = Design, RowOfDesign = 1, K = 10){
     # set a random number seed to be able to replicate the result exactly
     set.seed((k + 1000)*RowOfDesign)
     SimDat <- do.call(MyDataGeneration, Design[RowOfDesign,])
-    mean1 = SimDat[3]
-    mean2 = SimDat[4]
+    es = Design[RowOfDesign,]$es
+    
     # Analyze data set with Method_new
     tmp <- proc.time()
     MyAnalysisResult1 <- Method_new(SimDat)
+    
     #Analyze data set with Method_old
     MyAnalysisResult2 <- Method_old(SimDat)
     #Combine relevant results of the analysis by the two methods in a vector (optional)
     MyAnalysisResult <- c(MyAnalysisResult1$p.value, MyAnalysisResult2$p.value)
     #Evaluate the analysis results of Method_new (Result1) and Mehtod_old (Result2)
     
-    MyResult1 <- MyEvaluationPC(MyAnalysisResult1)
-    MyResult2 <- MyEvaluationPC(MyAnalysisResult2)
+    MyResult1 <- MyEvaluationPC(MyAnalysisResult1, es)
+    MyResult2 <- MyEvaluationPC(MyAnalysisResult2, es)
     #store the results in the right row k of your result matrix:
     #We only store the second result which is the evaluation criterion
     MyResult[k, ] <- c(MyResult1, MyResult2)
